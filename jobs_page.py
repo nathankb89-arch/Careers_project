@@ -18,6 +18,10 @@ class JobsPage(ctk.CTkFrame):
         ctk.CTkLabel(header_frame, text="💼 Job Matches", font=("Segoe UI", 22, "bold"), text_color="#00D4FF").pack(anchor="w")
         ctk.CTkLabel(header_frame, text="Perfect opportunities matched to your skills", font=("Segoe UI", 11), text_color="#888888").pack(anchor="w", pady=(5, 0))
 
+        # Back to Dashboard button (header)
+        back_header_btn = ctk.CTkButton(header_frame, text="← Back to Dashboard", width=160, height=36, font=("Segoe UI", 11, "bold"), fg_color="#2d5a8c", hover_color="#3a6baa", command=self.app.show_dashboard)
+        back_header_btn.pack(side="right")
+
         # Divider
         divider = ctk.CTkFrame(self, fg_color="#333333", height=2)
         divider.pack(fill="x", padx=20, pady=15)
@@ -56,14 +60,18 @@ class JobsPage(ctk.CTkFrame):
                 details_frame = ctk.CTkFrame(card, fg_color="#2d2d2d")
                 details_frame.pack(fill="x", padx=15, pady=(0, 10))
                 
-                ctk.CTkLabel(details_frame, text=f"📍 {job['career_field']} • Level: {job['level']}", font=("Segoe UI", 10), text_color="#AAAAAA").pack(anchor="w", pady=(0, 5))
+                ctk.CTkLabel(details_frame, text=f"📍 {job['career_field']} • Level: {job['level']} • Education: {job.get('required_education', 'Any')}", font=("Segoe UI", 10), text_color="#AAAAAA").pack(anchor="w", pady=(0, 5))
 
-                # Skills status
+                ctk.CTkLabel(details_frame, text=job.get('description', ''), font=("Segoe UI", 10), text_color="#CCCCCC", wraplength=700, justify="left").pack(anchor="w", pady=(0, 8))
+
+                # Skills and education status
                 if job['missing_skills']:
                     missing_text = f"🔧 Missing: {', '.join(job['missing_skills'])}"
-                    ctk.CTkLabel(details_frame, text=missing_text, font=("Segoe UI", 9), text_color="#F59E0B").pack(anchor="w", pady=(0, 8))
+                    ctk.CTkLabel(details_frame, text=missing_text, font=("Segoe UI", 9), text_color="#F59E0B").pack(anchor="w", pady=(0, 4))
                 else:
-                    ctk.CTkLabel(details_frame, text="✓ You have all required skills!", font=("Segoe UI", 9), text_color="#10B981").pack(anchor="w", pady=(0, 8))
+                    ctk.CTkLabel(details_frame, text="✓ You have all required skills!", font=("Segoe UI", 9), text_color="#10B981").pack(anchor="w", pady=(0, 4))
+
+                ctk.CTkLabel(details_frame, text=job.get('education_note', ''), font=("Segoe UI", 9), text_color="#9CA3AF").pack(anchor="w", pady=(0, 8))
 
                 # Buttons
                 button_frame = ctk.CTkFrame(card, fg_color="#2d2d2d")

@@ -255,7 +255,7 @@ python main.py
 
 **Nathan Kiprono**
 
-Bachelor of Science in Computer Science
+PYTHON STUDENT
 
 ---
 

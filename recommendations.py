@@ -34,5 +34,6 @@ class RecommendationsFrame(ctk.CTkFrame):
             # Description
             ctk.CTkLabel(card, text=item['description'], font=("Segoe UI", 10), text_color="#CCCCCC", wraplength=700, justify="left").pack(anchor="w", padx=15, pady=(0, 8))
             
-            # Skills
+            # Required education and skills
+            ctk.CTkLabel(card, text=f"Field: {item.get('career_field', 'General')} • Education: {item.get('required_education', 'Any')}", font=("Segoe UI", 9), text_color="#AAAAAA").pack(anchor="w", padx=15, pady=(0, 5))
             ctk.CTkLabel(card, text=f"Required Skills: {item['required_skills']}", font=("Segoe UI", 9), text_color="#888888").pack(anchor="w", padx=15, pady=(0, 15))
